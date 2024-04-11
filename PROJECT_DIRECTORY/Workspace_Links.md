@@ -6,7 +6,7 @@ https://docs.google.com/document/d/13zn3Du_ITpuuqhuOXTuwFgQzI777maBpdBDhu-0RpyI/
 ### Edstem Workspace
 https://edstem.org/us/courses/53506/workspaces/pYVeEGbeHGpDQh0yHL1FYETao4M3leEI
 
-### Gradebook Microcosm Github
+### Gradebook Microcosm Github Repo
 https://github.com/ernolfur/CSC212ResearchProject/new/main
 
 ### Presentation Google Slides
