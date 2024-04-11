@@ -1,4 +1,4 @@
-# Research Project Structure
+# Research Project Structure                      (tenative plan, most likely will change)
 - Data Structures: B-Tree, Skip List
 - Algorithm: Naive Algorithm
 ## Objective
