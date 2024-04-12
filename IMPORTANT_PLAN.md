@@ -40,10 +40,13 @@ Name,LabGrade1,LabGrade2,AssignmentGrade1,AssignmentGrade2,Attendance
 - handle grade range queries
 
 # Tasks For Each D&A
+This program will hold all student data in series of nested data structures. Each data structure/algorithm we code will be programmed to be able to hold a variety of data types, namely using C++ templates. This way we can use the same data structure to hold name strings, grade floats, and even other data structures.
+
 ## Naive Algorithm (Kai)
 - Calculate grade mean, median, and mode for whole class.
 - Search student information by name, output whole line if found.
 - Search student information by grade, output whole line if found.
+
 ## B-tree (Adam)
 - Append insert new entire student information into input .csv file
 - Sort grades from highest to lowest and output
