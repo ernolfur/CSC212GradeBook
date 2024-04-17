@@ -49,7 +49,7 @@ This program will hold all student data in series of nested data structures. Eac
 
 ## B-tree (Adam)
 - Append insert new entire student information into input .csv file
-- Sort grades from highest to lowest and output
+- Sort grades from highest to lowest by average and output
 - output students who receive bonus for reaching attendance count threshold
   
 ## Skip-List (Skye)
