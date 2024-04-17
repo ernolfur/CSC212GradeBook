@@ -1,8 +1,24 @@
 #include "B-tree.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <algorithm>
+
+float Student::averageGrade() const {
+    return (labGrade1 + labGrade2 + assignmentGrade1 + assignmentGrade2) / 4.0f;
+}
 
 BTreeNode::BTreeNode(int t1, bool leaf1) : t(t1), leaf(leaf1), n(0) {
     students = new Student[2*t-1];
     C = new BTreeNode *[2*t];
+}
+
+BTreeNode::~BTreeNode() {
+    delete[] students;
+    for (int i = 0; i < 2*t; i++) {
+        delete C[i];
+    }
+    delete[] C;
 }
 
 void BTreeNode::traverse(bool showBonusOnly) {
@@ -10,9 +26,10 @@ void BTreeNode::traverse(bool showBonusOnly) {
     for (i = 0; i < n; i++) {
         if (!leaf)
             C[i]->traverse(showBonusOnly);
+        
         if (!showBonusOnly || students[i].attendance) {
             std::cout << students[i].name << ": " << students[i].averageGrade();
-            if (students[i].attendance)
+            if (showBonusOnly && students[i].attendance)
                 std::cout << " (Bonus)";
             std::cout << std::endl;
         }
@@ -63,6 +80,10 @@ void BTreeNode::splitChild(int i, BTreeNode *y) {
 
 BTree::BTree(int t1) : t(t1), root(nullptr) {}
 
+BTree::~BTree() {
+    delete root;
+}
+
 void BTree::insert(Student k) {
     if (root == nullptr) {
         root = new BTreeNode(t, true);
@@ -89,9 +110,14 @@ void BTree::traverse(bool showBonusOnly) {
 }
 
 void BTree::appendStudentToCSV(const std::string& filename) {
-    std::string name;
+    std::ofstream outFile(filename, std::ios::app);
+    if (!outFile.is_open()) {
+        std::cerr << "Could not open file for appending: " << filename << std::endl;
+        return;
+    }
+    std::string name, attendance;
     int labGrade1, labGrade2, assignmentGrade1, assignmentGrade2;
-    std::string attendance;
+
     std::cout << "Enter student's name: ";
     std::getline(std::cin, name);
     std::cout << "Enter Lab Grade 1: ";
@@ -102,13 +128,12 @@ void BTree::appendStudentToCSV(const std::string& filename) {
     std::cin >> assignmentGrade1;
     std::cout << "Enter Assignment Grade 2: ";
     std::cin >> assignmentGrade2;
-    std::cin.ignore();
+    std::cin.ignore();  // Ignore the newline left in the input buffer
     std::cout << "Attendance (Yes/No): ";
     std::getline(std::cin, attendance);
 
-    std::ofstream outFile(filename, std::ios::app);
     outFile << "\"" << name << "\"," << labGrade1 << "," << labGrade2 << ","
-            << assignmentGrade1 << "," << assignmentGrade2 << ",\"" << attendance << "\"\n";
+            << assignmentGrade1 << "," << assignmentGrade2 << ",\"" << (attendance == "Yes" ? "Yes" : "No") << "\"\n";
     outFile.close();
 }
 
@@ -120,7 +145,7 @@ void BTree::readCSVAndPopulateBTree(const std::string &filename) {
     }
     std::string line, word;
     std::vector<std::string> row;
-    getline(file, line);
+    getline(file, line);  // skip the header line
     while (getline(file, line)) {
         std::stringstream ss(line);
         row.clear();
@@ -128,12 +153,12 @@ void BTree::readCSVAndPopulateBTree(const std::string &filename) {
             row.push_back(word);
         }
         Student stud;
-        stud.name = row[0].substr(1, row[0].size() - 2);
+        stud.name = row[0].substr(1, row[0].size() - 2); // remove the double quotes
         stud.labGrade1 = std::stoi(row[1]);
         stud.labGrade2 = std::stoi(row[2]);
         stud.assignmentGrade1 = std::stoi(row[3]);
         stud.assignmentGrade2 = std::stoi(row[4]);
-        stud.attendance = (row[5].substr(1, row[5].size() - 2) == "Yes");
+        stud.attendance = (row[5].substr(1, row[5].size() - 2) == "Yes"); // remove the double quotes
         insert(stud);
     }
     file.close();

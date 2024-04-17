@@ -3,7 +3,6 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <vector>
 
 int main() {
     std::string filename;
@@ -20,10 +19,10 @@ int main() {
     while (command != "exit") {
         if (command == "sort") {
             std::cout << "Sorted Grades:\n";
-            tree.traverse();
+            tree.traverse(false);  // false to not show bonuses
         } else if (command == "bonus") {
             std::cout << "Students eligible for attendance bonus:\n";
-            tree.traverse(true);
+            tree.traverse(true);  // true to only show students with bonuses
         } else if (command == "append") {
             tree.appendStudentToCSV(filename);
             tree = BTree(3);  // Reinitialize the tree

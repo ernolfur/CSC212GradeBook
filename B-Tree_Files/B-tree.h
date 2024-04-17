@@ -1,20 +1,14 @@
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
 #include <string>
-#include <algorithm>
+#include <vector>
 
 struct Student {
     std::string name;
     int labGrade1, labGrade2, assignmentGrade1, assignmentGrade2;
     bool attendance;
 
-    float averageGrade() const {
-        return (labGrade1 + labGrade2 + assignmentGrade1 + assignmentGrade2) / 4.0f;
-    }
+    float averageGrade() const;
 };
 
 class BTreeNode {
@@ -29,6 +23,7 @@ private:
 
 public:
     BTreeNode(int _t, bool _leaf);
+    ~BTreeNode();
     void traverse(bool showBonusOnly = false);
     void insertNonFull(Student k);
     void splitChild(int i, BTreeNode *y);
@@ -40,9 +35,9 @@ public:
     int t;
 
     BTree(int _t);
+    ~BTree();
     void insert(Student k);
     void traverse(bool showBonusOnly = false);
-
     void appendStudentToCSV(const std::string& filename);
     void readCSVAndPopulateBTree(const std::string &filename);
 };
