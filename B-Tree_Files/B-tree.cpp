@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <regex>
 
 float Student::averageGrade() const {
     return (labGrade1 + labGrade2 + assignmentGrade1 + assignmentGrade2) / 4.0f;
@@ -115,27 +116,62 @@ void BTree::appendStudentToCSV(const std::string& filename) {
         std::cerr << "Could not open file for appending: " << filename << std::endl;
         return;
     }
-    std::string name, attendance;
+    std::string name, attendance, input;
     int labGrade1, labGrade2, assignmentGrade1, assignmentGrade2;
+    
+    // Validate student name
+    std::regex name_pattern("[^0-9]+");  // Regex to exclude numbers
+    while (true) {
+        std::cout << "Enter student's name: ";
+        std::getline(std::cin, name);
+        if (std::regex_match(name, name_pattern)) {
+            break;
+        } else {
+            std::cout << "Invalid name. Please enter a valid name without numbers.\n";
+        }
+    }
 
-    std::cout << "Enter student's name: ";
-    std::getline(std::cin, name);
-    std::cout << "Enter Lab Grade 1: ";
-    std::cin >> labGrade1;
-    std::cout << "Enter Lab Grade 2: ";
-    std::cin >> labGrade2;
-    std::cout << "Enter Assignment Grade 1: ";
-    std::cin >> assignmentGrade1;
-    std::cout << "Enter Assignment Grade 2: ";
-    std::cin >> assignmentGrade2;
-    std::cin.ignore();  // Ignore the newline left in the input buffer
-    std::cout << "Attendance (Yes/No): ";
-    std::getline(std::cin, attendance);
+    // Function to read and validate integer inputs
+    auto readValidInteger = [](const std::string& prompt) -> int {
+        int value;
+        std::string input;
+        while (true) {
+            std::cout << prompt;
+            std::getline(std::cin, input);
+            std::stringstream ss(input);
+            if (ss >> value && ss.eof()) {  // Check if input is an integer and consume all input
+                break;
+            } else {
+                std::cout << "Invalid input. Please enter a valid integer.\n";
+            }
+        }
+        return value;
+    };
 
+    // Validate grades
+    labGrade1 = readValidInteger("Enter Lab Grade 1: ");
+    labGrade2 = readValidInteger("Enter Lab Grade 2: ");
+    assignmentGrade1 = readValidInteger("Enter Assignment Grade 1: ");
+    assignmentGrade2 = readValidInteger("Enter Assignment Grade 2: ");
+
+    // Validate attendance
+    std::regex yes_no_pattern("^(Yes|No)$", std::regex_constants::icase);  // Case insensitive check for 'Yes' or 'No'
+    while (true) {
+        std::cout << "Attendance (Yes/No): ";
+        std::getline(std::cin, attendance);
+        if (std::regex_match(attendance, yes_no_pattern)) {
+            break;
+        } else {
+            std::cout << "Invalid input. Please enter 'Yes' or 'No'.\n";
+        }
+    }
+
+    // Write to CSV
     outFile << "\"" << name << "\"," << labGrade1 << "," << labGrade2 << ","
-            << assignmentGrade1 << "," << assignmentGrade2 << ",\"" << (attendance == "Yes" ? "Yes" : "No") << "\"\n";
+            << assignmentGrade1 << "," << assignmentGrade2 << ",\"" << attendance << "\"\n";
     outFile.close();
 }
+
 
 void BTree::readCSVAndPopulateBTree(const std::string &filename) {
     std::ifstream file(filename);

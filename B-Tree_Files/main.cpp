@@ -6,19 +6,18 @@
 
 int main() {
     std::string filename;
-    std::cout << "Enter CSV file name: ";
-    std::getline(std::cin, filename);
-
     BTree tree(3);  // A B-Tree with min degree 3
-    tree.readCSVAndPopulateBTree(filename);
-
-    do {
+    
+    while (true) {
         std::cout << "Enter CSV file name: ";
         std::getline(std::cin, filename);
-        
+
         tree.readCSVAndPopulateBTree(filename);
         
-    } while (!tree.root); 
+        if (tree.root) {
+            break;  // If the tree is successfully populated, break the loop
+        }
+    }
 
     std::string command;
     std::cout << "Enter command ('sort', 'bonus', 'append', 'exit'): ";
@@ -35,7 +34,7 @@ int main() {
             tree.appendStudentToCSV(filename);
             tree = BTree(3);  // Reinitialize the tree
             tree.readCSVAndPopulateBTree(filename);  // Re-populate the tree
-            std::cout << "Student information successfully added";
+            std::cout << "Student information successfully added.\n";
         } else {
             std::cout << "Unknown command. Try again.\n";
         }
@@ -45,4 +44,3 @@ int main() {
 
     return 0;
 }
-
