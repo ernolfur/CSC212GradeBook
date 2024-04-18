@@ -12,6 +12,14 @@ int main() {
     BTree tree(3);  // A B-Tree with min degree 3
     tree.readCSVAndPopulateBTree(filename);
 
+    do {
+        std::cout << "Enter CSV file name: ";
+        std::getline(std::cin, filename);
+        
+        tree.readCSVAndPopulateBTree(filename);
+        
+    } while (!tree.root); 
+
     std::string command;
     std::cout << "Enter command ('sort', 'bonus', 'append', 'exit'): ";
     std::getline(std::cin, command);
@@ -27,6 +35,7 @@ int main() {
             tree.appendStudentToCSV(filename);
             tree = BTree(3);  // Reinitialize the tree
             tree.readCSVAndPopulateBTree(filename);  // Re-populate the tree
+            std::cout << "Student information successfully added";
         } else {
             std::cout << "Unknown command. Try again.\n";
         }
@@ -36,3 +45,4 @@ int main() {
 
     return 0;
 }
+
