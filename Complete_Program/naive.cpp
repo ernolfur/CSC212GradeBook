@@ -56,7 +56,7 @@ void Naive::searchGrade(const std::string& pattern) const {
         return;  // Exit the function if conversion fails
     }
 
-    std::cout << "Searching for students with an average grade of: " << std::fixed << std::setprecision(2) << averageGrade << std::endl;
+    std::cout << "Searching for students with this grade: " << std::fixed << std::setprecision(2) << averageGrade << std::endl;
     bool found = false;
 
     for (const auto& line : lines) {
