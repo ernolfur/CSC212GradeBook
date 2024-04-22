@@ -25,7 +25,7 @@ public:
     SkipList(std::vector<T> vec);
     ~SkipList();
 
-    void insert(T data);
+    Node<T>* insert(T data);
     Node<T>* search(T data);
     void remove(T data);
     unsigned int size();
@@ -88,7 +88,7 @@ unsigned int SkipList<T>::promoLevel(Node<T>* newNode) {
 }
 
 template <typename T>
-void SkipList<T>::insert(T data){
+Node<T>* SkipList<T>::insert(T data){
     //std::cout<< "Inserting: " << data << "\n";
     Node<T>* newNode = new Node<T>(data);
     unsigned int nNodeLvl = promoLevel(newNode);
@@ -110,6 +110,7 @@ void SkipList<T>::insert(T data){
     }
     this->width++;
     //std::cout<< "{ " << to_string() << "}" <<std::endl;
+    return newNode;
 }
 
 // Returns pointer to Node holding 'data', or nullptr if that doesn't exist
