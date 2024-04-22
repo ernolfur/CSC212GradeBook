@@ -5,7 +5,7 @@ template <typename N>
 class Node{
 private:
     N data;
-    std::vector<Node*> nexts;
+    std::vector<Node<N>*> nexts;
 
     template <typename T>
     friend class SkipList;
@@ -20,7 +20,6 @@ public:
 // Default constructor
 template <typename N>
 Node<N>::Node(){
-    this->data = 0;
     this->nexts.push_back(nullptr);
 }
 
