@@ -1,11 +1,15 @@
 # Files
+main.cpp: file input handling & command calls
+
+test.txt: sample test input for main.cpp
+
 skip_list.h: function definition
 
 skip_list.cpp: function implementation
 
-main.cpp: file input handling & command calls
+node.h: function definition for class used in skip_list
 
-test.txt: sample test input for main.cpp
+node.h: function implementation for class used in skip_list
 
 # Commands
 input() - puts passed data into the list as a new node, sorted into the right position
