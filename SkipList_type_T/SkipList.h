@@ -75,7 +75,6 @@ bool SkipList<T>::flip(){
 // Finds what level the new node should be promoted to
 template <typename T>
 unsigned int SkipList<T>::promoLevel(Node<T>* newNode) {
-    //std::cout<< "Finding lvl...";
     unsigned int lvl = 1;
     while(flip()){
         lvl++;
@@ -86,8 +85,6 @@ unsigned int SkipList<T>::promoLevel(Node<T>* newNode) {
         head.nexts.push_back(nullptr);
         height++;
     }
-    //std::cout<< "done\n";
-    //std::cout<< "Node promod to " << lvl << ", height is " << height << "\n";
     return lvl;
 }
 
@@ -100,23 +97,16 @@ void SkipList<T>::insert(T data){
     Node<T>* n;
     // Works down the layers iteratively
     for(unsigned int curLvl=this->height; curLvl>0; curLvl--){
-        //std::cout<< "Level " << curLvl << "\n";
         n = p->nexts.at(curLvl-1);
         // Works right until next node's value is larger
         while(n!=nullptr && data >= n->data){
             p = n;
             n = p->nexts.at(curLvl-1);
-            //std::cout<< "Moved right to " << p->data << "\n";
         }
         if(nNodeLvl >= curLvl){
             p->nexts.at(curLvl-1) = newNode;
             newNode->nexts.at(curLvl-1) = n;
         }
-        /*
-        if(nNodeLvl <= curLvl){
-            emplace(p, newNode, curLvl);
-        }
-        */
     }
     this->width++;
     std::cout<< "{ " << to_string() << "}" <<std::endl;
