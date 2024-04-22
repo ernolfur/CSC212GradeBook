@@ -20,14 +20,14 @@ private:
     bool flip();
     unsigned int promoLevel(Node<T>* newNode);
 public:
-    SkipList(); // this->heads = nullptr;
+    SkipList();
     SkipList(T data);
     SkipList(std::vector<T> vec);
     ~SkipList();
 
     void insert(T data);
-    Node<T>* search(int data);
-    void remove(int data);
+    Node<T>* search(T data);
+    void remove(T data);
     unsigned int size();
     std::string to_string();
     std::string full_print();
@@ -80,7 +80,6 @@ unsigned int SkipList<T>::promoLevel(Node<T>* newNode) {
         lvl++;
         newNode->nexts.push_back(nullptr);
     }
-    //expands head pointer array as necessary
     while(this->height < lvl){
         head.nexts.push_back(nullptr);
         height++;
@@ -90,8 +89,8 @@ unsigned int SkipList<T>::promoLevel(Node<T>* newNode) {
 
 template <typename T>
 void SkipList<T>::insert(T data){
-    std::cout<< "Inserting: " << data << "\n";
-    Node<T>* newNode = new Node<int>(data);
+    //std::cout<< "Inserting: " << data << "\n";
+    Node<T>* newNode = new Node<T>(data);
     unsigned int nNodeLvl = promoLevel(newNode);
     Node<T>* p = &head;
     Node<T>* n;
@@ -102,6 +101,7 @@ void SkipList<T>::insert(T data){
         while(n!=nullptr && data >= n->data){
             p = n;
             n = p->nexts.at(curLvl-1);
+            //std::cout<< "Moved right to " << p->data << "\n";
         }
         if(nNodeLvl >= curLvl){
             p->nexts.at(curLvl-1) = newNode;
@@ -109,12 +109,12 @@ void SkipList<T>::insert(T data){
         }
     }
     this->width++;
-    std::cout<< "{ " << to_string() << "}" <<std::endl;
+    //std::cout<< "{ " << to_string() << "}" <<std::endl;
 }
 
 // Returns pointer to Node holding 'data', or nullptr if that doesn't exist
 template <typename T>
-Node<T>* SkipList<T>::search(int data){
+Node<T>* SkipList<T>::search(T data){
     if(this->head.nexts.empty()){return nullptr;}
     Node<T>* p = &head;
     Node<T>* n;
@@ -138,7 +138,7 @@ Node<T>* SkipList<T>::search(int data){
 
 // Removes first node containing 'data',
 template <typename T>
-void SkipList<T>::remove(int data){
+void SkipList<T>::remove(T data){
     unsigned int targetHeight;
     Node<T>* target = search(data);
     if(target != nullptr){
@@ -180,6 +180,18 @@ std::string SkipList<T>::to_string(){
     return stringified;
 }
 
+template <>
+std::string SkipList<std::string>::to_string(){
+    std::string stringified;
+    if(this->head.nexts.empty()){return stringified;}
+    Node<std::string>* tmp = this->head.nexts.at(0);
+    while(tmp != nullptr){
+        stringified += tmp->data + " ";
+        tmp = tmp->nexts.at(0);
+    }
+
+    return stringified;
+}
 
 template <typename T>
 std::string SkipList<T>::full_print() {
@@ -195,6 +207,36 @@ std::string SkipList<T>::full_print() {
     while(c!=nullptr) {
         for (int i = 0; i < c->nexts.size(); i++) {
             stringified += std::to_string(c->data) + " ";
+        }
+        for (int i = 0; i < (this->height - c->nexts.size()); i++) {
+            stringified += " | ";
+        }
+        stringified += "\n";
+        c = c->nexts.at(0);
+    }
+
+    for(int i=0; i<this->height-1; i++){
+        stringified += "---";
+    }
+    stringified += "--";
+
+    return stringified;
+}
+
+template <>
+std::string SkipList<std::string>::full_print() {
+    std::string stringified;
+    if(this->head.nexts.empty()){return stringified;}
+
+    for(int i=0; i<this->height-1; i++){
+        stringified += "---";
+    }
+    stringified += "--\n";
+
+    Node<std::string>* c = head.nexts.at(0);
+    while(c!=nullptr) {
+        for (int i = 0; i < c->nexts.size(); i++) {
+            stringified += c->data + " ";
         }
         for (int i = 0; i < (this->height - c->nexts.size()); i++) {
             stringified += " | ";
