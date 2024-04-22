@@ -14,17 +14,12 @@ void fillSkipList(SkipList<std::string>* SL, std::string filename){
     }
 
     std::string line, word;
-    std::vector<std::string> row;
-    Node<std::string>* newNode;
     getline(file, line);  // skip the header line
     while (getline(file, line)) {
         std::stringstream ss(line);
-        row.clear();
-        while (getline(ss, word, ',')) {
-            row.push_back(word);
-        }
-        std::string name = row[0].substr(1, row[0].size() - 2); // remove the double quotes
-        newNode = SL->insert(name);
+        getline(ss, word, ',');
+        // Puts name into Skip List as new node
+        SL->insert(word.substr(1, word.size() - 2));
     }
     file.close();
 }
