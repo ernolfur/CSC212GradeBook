@@ -1,3 +1,4 @@
+//https://www.educative.io/answers/the-naive-algorithm-for-pattern-searching 
 #include "naive.h"
 #include <fstream>
 #include <sstream>
@@ -6,6 +7,7 @@
 #include <cctype>  // For std::tolower
 #include <cmath>   // For std::fabs
 #include <iomanip> // For std::setprecision
+#include <vector>
 
 Naive::Naive(const std::string& filename) {
     readCSV(filename);
@@ -76,4 +78,45 @@ void Naive::searchGrade(const std::string& pattern) const {
 
     if (!found)
         std::cout << "No matching grades found." << std::endl;
+}
+
+void Naive::deleteLine(const std::string& pattern, const std::string& filename) {
+    std::string mod_pattern = pattern;
+    std::transform(mod_pattern.begin(), mod_pattern.end(), mod_pattern.begin(), ::tolower);  // Convert pattern to lowercase for case-insensitive comparison
+    bool found = false;
+
+    auto it = std::remove_if(lines.begin(), lines.end(), [&](const std::string& line) {
+        size_t commaPos = line.find(',');
+        if (commaPos != std::string::npos) {
+            std::string name = line.substr(0, commaPos);  // Extract the name
+            if (!name.empty() && name.front() == '"') {   // Check if the name is enclosed in quotes
+                name = name.substr(1, name.length() - 2); // Remove the enclosing quotes
+            }
+            std::transform(name.begin(), name.end(), name.begin(), ::tolower);  // Convert to lowercase
+            if (name == mod_pattern) {
+                found = true;
+                return true;  // Return true if the name exactly matches the pattern to delete it
+            }
+        }
+        return false;  // Keep the line if no comma is found or the name does not match exactly
+    });
+
+    if (found) {
+        std::cout << "Deleting lines matching pattern: " << pattern << std::endl;
+        lines.erase(it, lines.end());  // Remove the lines that match the pattern
+
+        // Write the updated data back to the file
+        std::ofstream outFile(filename);
+        if (!outFile) {
+            std::cerr << "Failed to open the file for writing: " << filename << std::endl;
+            return;
+        }
+        for (const auto& line : lines) {
+            outFile << line << std::endl;
+        }
+        outFile.close();
+        std::cout << "File updated successfully.\n";
+    } else {
+        std::cout << "No matching names found for deletion.\n";
+    }
 }

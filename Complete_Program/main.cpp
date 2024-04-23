@@ -4,25 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "SkipList.h"
 
-void fillSkipList(SkipList<std::string>* SL, std::string filename){
-    std::ifstream file(filename);
-    if (!file.is_open()) {
-        std::cerr << "Failed to open file: " << filename << std::endl;
-        return;
-    }
-
-    std::string line, word;
-    getline(file, line);  // skip the header line
-    while (getline(file, line)) {
-        std::stringstream ss(line);
-        getline(ss, word, ',');
-        // Puts name into Skip List as new node
-        SL->insert(word.substr(1, word.size() - 2));
-    }
-    file.close();
-}
 
 int main() {
     std::string filename;
@@ -50,7 +32,7 @@ int main() {
     tree.readCSVAndPopulateBTree(filename);  // Populate the B-Tree with data from the CSV
 
     std::string command;
-    std::cout << "Enter command ('search_name', 'search_grade', 'sort', 'bonus', 'append', 'exit'): ";
+    std::cout << "Enter command ('search_name', 'search_grade', 'sort', 'bonus', 'append', 'delete', 'exit'): ";
     std::getline(std::cin, command);
 
     while (command != "exit") {
@@ -77,11 +59,17 @@ int main() {
             tree = BTree(3);  // Reinitialize the B-Tree
             tree.readCSVAndPopulateBTree(filename);  // Re-populate the B-Tree
             std::cout << "Student information successfully added and updated in the search index.\n";
-        } else {
+        } else if (command == "delete") {
+            std::string name_pattern;
+            std::cout << "Enter name pattern to search: ";
+            std::getline(std::cin, name_pattern);
+            naive.deleteLine(name_pattern, filename);
+        }
+        else {
             std::cout << "Unknown command. Please try again.\n";
         }
 
-        std::cout << "Enter next command ('search_name', 'search_grade', 'sort', 'bonus', 'append', 'exit'): ";
+        std::cout << "Enter next command ('search_name', 'search_grade', 'sort', 'bonus', 'append', 'delete', 'exit'): ";
         std::getline(std::cin, command);
     }
 
