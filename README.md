@@ -45,9 +45,9 @@ Name,LabGrade1,LabGrade2,AssignmentGrade1,AssignmentGrade2,Attendance
 This program will hold all student data in series of nested data structures. Each data structure/algorithm we code will be programmed to be able to hold a variety of data types, namely using C++ templates. This way we can use the same data structure to hold name strings, grade floats, and even other data structures.
 
 ## Naive Algorithm (Kai)
-- Calculate grade mean, median, and mode for whole class.
 - Search student information by name, output whole line if found.
 - Search student information by grade, output whole line if found.
+- Delete line given a students name
 - Description: 
 A naive algorithm solves problems using the most straightforward and obvious approach, often involving a brute-force search through all possible solutions to find the correct one.
 ## B-tree (Adam)
