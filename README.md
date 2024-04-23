@@ -78,6 +78,7 @@ Append: append new student information to .csv file
 Search_name: flexible search command that allows to search users by their specific name or pattern search.
 Search_grade: Search for a specific grade and output student information
 Bonus: Output student names who meet attendance bonus.
+Above: Outputs the percentage of students that have a grade average about the user input.
 
 ## Program Usage Instructions
 The program usage involves interacting with the menu that the user will be greeted with when run the program. This menu will offer multiple commands that the user can access to test the program's functionalities. We want the user to use this program to gain insight on how a gradebook structure works and also see how we were able to implement the data structures/algorithms mentioned.
