@@ -7,3 +7,4 @@ chapters:
 - file: GettingStarted
 - file: notebooks
 - file: markdown-notebooks
+- file: commands
