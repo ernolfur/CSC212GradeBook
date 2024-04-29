@@ -4,6 +4,7 @@
 format: jb-book
 root: intro
 chapters:
-- file: GettingStarted
-- file: notebooks
-- file: markdown-notebooks
+  - file: GettingStarted
+  - file: commands
+  - file: proposal
+  - file: codebreakdown

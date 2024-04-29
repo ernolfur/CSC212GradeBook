@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Notebooks with MyST Markdown &#8212; My sample book</title>
+    <title>Gradebook Management Microcosm Documentation &#8212; My sample book</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'markdown-notebooks';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'proposal';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Program Commands" href="commands.html" />
-    <link rel="prev" title="Content with notebooks" href="notebooks.html" />
+    <link rel="next" title="Code Overview" href="codebreakdown.html" />
+    <link rel="prev" title="Program Commands" href="commands.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -178,9 +178,11 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Notebooks with MyST Markdown</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands.html">Program Commands</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Gradebook Management Microcosm Documentation</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="codebreakdown.html">Code Overview</a></li>
 </ul>
 
     </div>
@@ -252,7 +254,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmarkdown-notebooks.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fproposal.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -282,7 +284,7 @@
       
       
       
-      <li><a href="_sources/markdown-notebooks.md" target="_blank"
+      <li><a href="_sources/proposal.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -366,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Notebooks with MyST Markdown</h1>
+    <h1>Gradebook Management Microcosm Documentation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -376,10 +378,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Gradebook Management Microcosm Documentation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#research-project-structure">Research Project Structure</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microcosm">Microcosm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-features">General Features</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks-for-each-d-a">Tasks For Each D&amp;A</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-algorithm-kai">Naive Algorithm (Kai)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-tree-adam">B-tree (Adam)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skip-list-skye">Skip-List (Skye)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-anish">Main (Anish)</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -390,50 +404,100 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="notebooks-with-myst-markdown">
-<h1>Notebooks with MyST Markdown<a class="headerlink" href="#notebooks-with-myst-markdown" title="Link to this heading">#</a></h1>
-<p>Jupyter Book also lets you write text-based notebooks using MyST Markdown.
-See <a class="reference external" href="https://jupyterbook.org/file-types/myst-notebooks.html">the Notebooks with MyST Markdown documentation</a> for more detailed instructions.
-This page shows off a notebook written in MyST Markdown.</p>
-<section id="an-example-cell">
-<h2>An example cell<a class="headerlink" href="#an-example-cell" title="Link to this heading">#</a></h2>
-<p>With MyST Markdown, you can define code cells with a directive like so:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="gradebook-management-microcosm-documentation">
+<h1>Gradebook Management Microcosm Documentation<a class="headerlink" href="#gradebook-management-microcosm-documentation" title="Link to this heading">#</a></h1>
+<p>This file contains all of our documentation relating to the Gradebook program. Contains everything you need to know including usage, installation instructions, and functionality.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="research-project-structure">
+<h1>Research Project Structure<a class="headerlink" href="#research-project-structure" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Data Structures: B-Tree, Skip List</p></li>
+<li><p>Algorithm: Naive Algorithm</p></li>
+</ul>
+<section id="microcosm">
+<h2>Microcosm<a class="headerlink" href="#microcosm" title="Link to this heading">#</a></h2>
+<p>We are going to be creating a <strong>gradebook management program</strong>.</p>
+<p>Users will be able to store and manage data relating to information stored in a real gradebook.</p>
+<p>This program will be designed to simulate fundamental features of a typical gradebook system such as in CSC212.</p>
+<p>We hope to show in our program that we gained a more in-depth understanding of data structure implementation and system design.</p>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>First and Last Name</p></li>
+<li><p>Lab and Assignment Grades (out of 100)</p></li>
+<li><p>Attendance</p></li>
+</ul>
+<p>Example Format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span><span class="p">,</span><span class="n">LabGrade1</span><span class="p">,</span><span class="n">LabGrade2</span><span class="p">,</span><span class="n">AssignmentGrade1</span><span class="p">,</span><span class="n">AssignmentGrade2</span><span class="p">,</span><span class="n">Attendance</span>
+<span class="s2">&quot;John Doe&quot;</span><span class="p">,</span><span class="mi">89</span><span class="p">,</span><span class="mi">93</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span><span class="s2">&quot;Yes&quot;</span>
+<span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">99</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">67</span><span class="p">,</span><span class="s2">&quot;No&quot;</span>
+<span class="s2">&quot;Alice Johnson&quot;</span><span class="p">,</span><span class="mi">82</span><span class="p">,</span><span class="mi">88</span><span class="p">,</span><span class="mi">91</span><span class="p">,</span><span class="mi">78</span><span class="p">,</span><span class="s2">&quot;Yes&quot;</span>
+<span class="s2">&quot;Bob Brown&quot;</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">87</span><span class="p">,</span><span class="mi">93</span><span class="p">,</span><span class="s2">&quot;Yes&quot;</span>
+<span class="s2">&quot;Charlie Smith&quot;</span><span class="p">,</span><span class="mi">77</span><span class="p">,</span><span class="mi">84</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="s2">&quot;No&quot;</span>
+<span class="s2">&quot;Diana Prince&quot;</span><span class="p">,</span><span class="mi">68</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="s2">&quot;Yes&quot;</span>
+<span class="s2">&quot;Evan Wright&quot;</span><span class="p">,</span><span class="mi">88</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">84</span><span class="p">,</span><span class="s2">&quot;No&quot;</span>
+<span class="s2">&quot;Fiona Glenanne&quot;</span><span class="p">,</span><span class="mi">92</span><span class="p">,</span><span class="mi">87</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">88</span><span class="p">,</span><span class="s2">&quot;Yes&quot;</span>
+<span class="s2">&quot;Gregory House&quot;</span><span class="p">,</span><span class="mi">73</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">77</span><span class="p">,</span><span class="mi">69</span><span class="p">,</span><span class="s2">&quot;No&quot;</span>
+<span class="s2">&quot;Hannah Abbott&quot;</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">82</span><span class="p">,</span><span class="mi">86</span><span class="p">,</span><span class="s2">&quot;Yes&quot;</span>
+<span class="s2">&quot;Ivan Rogers&quot;</span><span class="p">,</span><span class="mi">78</span><span class="p">,</span><span class="mi">74</span><span class="p">,</span><span class="mi">88</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="s2">&quot;No&quot;</span>
+<span class="s2">&quot;Jessica Day&quot;</span><span class="p">,</span><span class="mi">95</span><span class="p">,</span><span class="mi">92</span><span class="p">,</span><span class="mi">89</span><span class="p">,</span><span class="mi">91</span><span class="p">,</span><span class="s2">&quot;Yes&quot;</span>
+
 </pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-</div>
-</div>
-<p>When your book is built, the contents of any <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> blocks will be
-executed with your default Jupyter kernel, and their outputs will be displayed
-in-line with the rest of your content.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Jupyter Book uses <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/">Jupytext</a> to convert text-based files to notebooks, and can support <a class="reference external" href="https://jupyterbook.org/file-types/jupytext.html">many other text-based notebook files</a>.</p>
 </div>
 </section>
-<section id="create-a-notebook-with-myst-markdown">
-<h2>Create a notebook with MyST Markdown<a class="headerlink" href="#create-a-notebook-with-myst-markdown" title="Link to this heading">#</a></h2>
-<p>MyST Markdown notebooks are defined by two things:</p>
-<ol class="arabic simple">
-<li><p>YAML metadata that is needed to understand if / how it should convert text files to notebooks (including information about the kernel needed).
-See the YAML at the top of this page for example.</p></li>
-<li><p>The presence of <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> directives, which will be executed with your book.</p></li>
-</ol>
-<p>That’s all that is needed to get started!</p>
+<section id="general-features">
+<h2>General Features<a class="headerlink" href="#general-features" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Sort grades highest to lowest</p></li>
+<li><p>Flexible Grading Scale: Calculates average</p></li>
+<li><p>Search student info by name and grade.</p></li>
+<li><p>insertion, deletion, sorting of student info</p></li>
+<li><p>handle multiple search queries</p></li>
+</ul>
 </section>
-<section id="quickly-add-yaml-metadata-for-myst-notebooks">
-<h2>Quickly add YAML metadata for MyST Notebooks<a class="headerlink" href="#quickly-add-yaml-metadata-for-myst-notebooks" title="Link to this heading">#</a></h2>
-<p>If you have a markdown file and you’d like to quickly add YAML metadata to it, so that Jupyter Book will treat it as a MyST Markdown Notebook, run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">myst</span> <span class="n">init</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">markdownfile</span><span class="o">.</span><span class="n">md</span>
-</pre></div>
-</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tasks-for-each-d-a">
+<h1>Tasks For Each D&amp;A<a class="headerlink" href="#tasks-for-each-d-a" title="Link to this heading">#</a></h1>
+<p>This program will hold all student data in series of nested data structures. Each data structure/algorithm we code will be programmed to be able to hold a variety of data types, namely using C++ templates. This way we can use the same data structure to hold name strings, grade floats, and even other data structures.</p>
+<section id="naive-algorithm-kai">
+<h2>Naive Algorithm (Kai)<a class="headerlink" href="#naive-algorithm-kai" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Search student information by name, output whole line if found.</p></li>
+<li><p>Search student information by grade, output whole line if found.</p></li>
+<li><p>Delete line given a students name</p></li>
+<li><p>Description:
+A naive algorithm solves problems using the most straightforward and obvious approach, often involving a brute-force search through all possible solutions to find the correct one.</p></li>
+</ul>
+</section>
+<section id="b-tree-adam">
+<h2>B-tree (Adam)<a class="headerlink" href="#b-tree-adam" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Append insert new entire student information into input .csv file</p></li>
+<li><p>Sort grades from highest to lowest by average and output</p></li>
+<li><p>output students who receive bonus for reaching attendance count threshold</p></li>
+<li><p>Description:
+A B-tree is a self-balancing tree data structure that maintains sorted data and allows searches, sequential access, insertions, and deletions in logarithmic time. It is commonly used in databases and file systems to allow quick data retrieval and manipulation even with large volumes of data.</p></li>
+</ul>
+</section>
+<section id="skip-list-skye">
+<h2>Skip-List (Skye)<a class="headerlink" href="#skip-list-skye" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Delete entire line student information by searching name</p></li>
+<li><p>given a grade range, output grade counts that are within this range. (ex: amount of grades within 80-90)</p></li>
+<li><p>output students that are passing/failing based on grade average. (ex: avg_grade &gt;= 65 = passing. avg_grade &lt; 65 failing.)</p></li>
+<li><p>Description: A Skip List is a probabilistic data structure that enhances the efficiency of searching within an ordered sequence of elements, similar to a sorted linked list but with additional layers that enable fast access paths across the list.</p></li>
+</ul>
+</section>
+<section id="main-anish">
+<h2>Main (Anish)<a class="headerlink" href="#main-anish" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>handle data from .csv file (strings/int)</p></li>
+<li><p>properly store data</p></li>
+<li><p>output correctly</p></li>
+<li><p>read in data from .csv file</p></li>
+<li><p>write out data to .csv file</p></li>
+</ul>
 </section>
 </section>
 
@@ -468,20 +532,20 @@ See the YAML at the top of this page for example.</p></li>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="notebooks.html"
+       href="commands.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Content with notebooks</p>
+        <p class="prev-next-title">Program Commands</p>
       </div>
     </a>
     <a class="right-next"
-       href="commands.html"
+       href="codebreakdown.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Program Commands</p>
+        <p class="prev-next-title">Code Overview</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -501,10 +565,22 @@ See the YAML at the top of this page for example.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Gradebook Management Microcosm Documentation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#research-project-structure">Research Project Structure</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microcosm">Microcosm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-features">General Features</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks-for-each-d-a">Tasks For Each D&amp;A</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-algorithm-kai">Naive Algorithm (Kai)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-tree-adam">B-tree (Adam)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skip-list-skye">Skip-List (Skye)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-anish">Main (Anish)</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
