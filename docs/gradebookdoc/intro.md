@@ -1,11 +1,8 @@
-# Welcome to your Jupyter Book
+# Welcome to the CSC 212 Gradebook Documentation Website
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+This website contains all the information you will need to begin to use and understand our program. This program was created for our final project for CSC 212 and was designed to emulate a typical gradebook system you would find in a college level course. For specific information you are interested in, please navigate through the numerous sections containing all the information you need.
 
-Check out the content pages bundled with this sample book to see more.
+Table of contents is listed below:
 
 ```{tableofcontents}
 ```
