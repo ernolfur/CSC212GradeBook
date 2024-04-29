@@ -4,7 +4,7 @@
 format: jb-book
 root: intro
 chapters:
-  - file: GettingStarted
+  - file: docs/gradebookdoc/GettingStarted
   - file: notebooks
   - file: markdown-notebooks
   - file: commands
