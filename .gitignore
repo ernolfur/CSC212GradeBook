@@ -1,0 +1,7 @@
+*/*.ipynb_checkpoints/
+_build/
+*/*.ipynb
+.DS_Store
+_build/
+.jupyter_cache/
+
