@@ -10,4 +10,4 @@ above
 ### Naive Algorithm
 search_name, search_grade, delete
 
-Code for these files can be found [here](https://github.com/ernolfur/CSC212GradeBook/tree/main/Complete_Program)
+Code for these files can be found [in this github repo](https://github.com/ernolfur/CSC212GradeBook/tree/main/Complete_Program)
