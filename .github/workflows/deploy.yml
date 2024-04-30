@@ -1,0 +1,47 @@
+name: deploy-book
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    # Optionally specify paths if you want to limit when the action runs.
+    paths:
+      - 'docs/**'
+
+jobs:
+  deploy-book:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: |
+        pip install -r docs/requirements.txt  # Adjust path as necessary
+
+    - name: Cache executed notebooks (optional)
+      uses: actions/cache@v3
+      with:
+        path: docs/_build/.jupyter_cache  # Adjust path as necessary
+        key: jupyter-book-cache-${{ hashFiles('docs/requirements.txt') }}  # Adjust path as necessary
+
+    - name: Build the book
+      run: |
+        cd docs
+        jupyter-book build .
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: docs/_build/html  # Ensure this is the correct output path
+
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v2
