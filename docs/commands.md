@@ -1,7 +1,7 @@
 # Program Commands
 
 ### Sort
-outputs student name and average grade from lowest to highest Delete: deletes student information by name search
+outputs student name and average grade from lowest to highest
 
 ### Append
 append new student information to .csv file
