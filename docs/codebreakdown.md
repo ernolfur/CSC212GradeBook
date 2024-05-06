@@ -1,6 +1,6 @@
 # Code Overview
 
-## Data structures and algorithms
+## Data Structures and Algorithms
 This program involves three data structures and algorithms where each was assigned commands to be used to implement into our program.
 
 ### B-tree
