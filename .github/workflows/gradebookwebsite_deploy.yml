@@ -9,7 +9,6 @@ on:
     # Optionally specify paths if you want to limit when the action runs.
     paths:
       - 'docs/**'
-  workflow_dispatch:
 jobs:
   deploy-book:
     runs-on: ubuntu-latest
