@@ -16,19 +16,19 @@ jobs:
       pages: write
       id-token: write
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
-    - name: Set up Python 3.11
-      uses: actions/setup-python@v4
+    - name: Set up Python Latest
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.11
+        python-version: '3.x'
 
     - name: Install dependencies
       run: |
         pip install -r docs/requirements.txt  # Adjust path as necessary
 
     - name: Cache executed notebooks (optional)
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: docs/_build/.jupyter_cache  # Adjust path as necessary
         key: jupyter-book-cache-${{ hashFiles('docs/requirements.txt') }}  # Adjust path as necessary
@@ -39,9 +39,9 @@ jobs:
         jupyter-book build .
 
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v2
+      uses: actions/upload-pages-artifact@v3
       with:
         path: docs/_build/html  # Ensure this is the correct output path
 
     - name: Deploy to GitHub Pages
-      uses: actions/deploy-pages@v2
+      uses: actions/deploy-pages@v4
