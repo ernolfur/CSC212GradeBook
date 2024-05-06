@@ -20,3 +20,5 @@ Outputs the percentage of students that have a grade average about the user nume
 
 ### Delete
 Delete student information by searching name
+
+This provides the user a comprehensive list of commands for data manipulation and search queries.
