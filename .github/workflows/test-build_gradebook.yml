@@ -1,14 +1,8 @@
 name: test-gradebookbuild
 
 on:
-  push:
-    branches:
-      - main
-      
-    # Optionally specify paths if you want to limit when the action runs.
-    paths:
-      - 'docs/**'
-  workflow_dispatch: # manually trigger to test build
+  workflow_dispatch:
+    
 jobs:
   deploy-book:
     runs-on: ubuntu-latest
